@@ -1,0 +1,9 @@
+<div class="category-menu">
+<app-category-menu-item
+*ngFor="let cat of categories"
+[categoryName]="cat.name"
+(itemSelected)="onItemSelected(cat)">
+</app-category-menu-item>
+</div>
+  
+

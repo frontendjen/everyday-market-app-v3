@@ -1,0 +1,184 @@
+<h1>Register Page</h1>
+
+<form
+  class="register-form"
+  #registerForm="ngForm"
+  (ngSubmit)="onSubmit(registerForm)"
+  novalidate
+>
+  <!--Name-->
+
+  <div class="form-group">
+    <label for="name">Name:</label>
+
+    <input
+    id="name"
+    name="name"
+    type="text"
+    required
+    ngModel
+    minlength="5"
+    pattern="^[A-Za-z ]+$"
+    #nameCtrl="ngModel"
+    [ngClass]="{'error-border': nameCtrl.invalid && nameCtrl.touched}"
+    />
+
+    <div *ngIf="nameCtrl.invalid && nameCtrl.touched" class="error-message">
+    Must be at least 5 letters (letters/spaces only).
+    </div>
+  </div>
+
+  <!--email -->
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+    id="email"
+    name="email"
+    type="email"
+    ngModel
+    required
+    #emailCtrl="ngModel"
+    [ngClass]="{'error-border': emailCtrl.invalid && emailCtrl.touched}"
+    />
+
+    <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="error-message">
+    Enter a valid email address.
+    </div>
+  </div>
+
+  <!--phone -->
+
+  <div class="form-group">
+    <label for="phone">Phone Number:</label>
+    <input
+    id="phone"
+    name="phone"
+    type="text"
+    ngModel
+    required
+    pattern="^\\d{10}$"
+    #phoneCtrl="ngModel"
+    [ngClass]="{'error-border': phoneCtrl.invalid && phoneCtrl.touched}"
+    />
+
+    <div *ngIf="phoneCtrl.invalid && phoneCtrl.touched" class="error-message">
+      Enter a 10-digit phone number.
+    </div>
+  </div>
+
+  <!--date of birth-->
+
+  <div class="form-group">
+    <label for="dob">Date of Birth:</label>
+    <input
+    id="dob"
+    name="dob"
+    type="date"
+    ngModel
+    required
+    #dobCtrl="ngModel"
+    [ngClass]="{'error-border': dobCtrl.invalid && dobCtrl.touched}"
+    />
+
+    <div *ngIf="dobCtrl.invalid && dobCtrl.touched" class="error-message">
+    Select a valid date of birth.
+    </div>
+  </div>
+
+  <!--street address-->
+
+  <div class="form-group">
+    <label for="address">Street Address:</label>
+    <input
+    id="address"
+    name="address"
+    type="text"
+    ngModel
+    required
+    #addressCtrl="ngModel"
+    [ngClass]="{'error-border': addressCtrl.invalid && addressCtrl.touched}"
+    />
+
+    <div *ngIf="addressCtrl.invalid && addressCtrl.touched" class="error-message">
+    Street address is required.
+    </div>
+  </div>
+
+  <!--province-->
+
+  <div class="form-group">
+    <label for="province">Province:</label>
+    <select
+    id="province"
+    name="province"
+    ngModel
+    required
+    #provinceCtrl="ngModel"
+    [ngClass]="{'error-border': provinceCtrl.invalid && provinceCtrl.touched}"
+    >
+      <option value="">Select a province</option>
+      <option *ngFor="let province of provinces" [value]="province">
+        {{ province }}
+    </option>
+    </select>
+
+    <div *ngIf="provinceCtrl.invalid && provinceCtrl.touched" class="error-message">
+    Select a province.
+    </div>
+  </div>
+
+  <!--country-->
+  <div class="form-group">
+    <label for="country">Country:</label>
+    <select
+    id="country"
+    name="country"
+    ngModel
+    required
+    
+    appCountryValidator
+
+    #countryCtrl="ngModel"
+    [ngClass]="{'error-border': countryCtrl.invalid && countryCtrl.touched}"
+    >
+      <option value="Canada">Canada</option>
+    <option value="USA">United States</option>
+    </select>
+  </div>
+
+  <div *ngIf="countryCtrl.invalid && countryCtrl.touched" class="error-message">
+  We only accept registrations from Canada.
+  </div>
+
+  <!--terms and conditions -->
+
+  <div class="form-group">
+    <label for="acceptTerms" style="display: inline-flex; align-items: center;">
+      <input
+      type="checkbox"
+      id="acceptTerms"
+      name="acceptTerms"
+      required
+      ngModel
+      #termsCtrl="ngModel"
+      [ngClass]="{'error-border': termsCtrl.invalid && termsCtrl.touched}"
+      style="margin-right: 0.5em;"
+      /> Accept Terms & Conditions
+    </label>
+
+    <div *ngIf="termsCtrl.invalid && termsCtrl.touched" class="error-message">
+    You must accept the terms and conditions.
+    </div>
+  </div>
+
+  <!--submit button -->
+
+  <div style="margin-top: 1em;">
+    <button type="submit" [disabled]="registerForm.invalid">
+    Submit
+  </button>
+  </div>
+</form>
+
+
