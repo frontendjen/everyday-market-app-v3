@@ -35,7 +35,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 └── main.ts
 
   
-## 🚀 Installation
+## Installation
 
 ```bash
 # Clone the repository
